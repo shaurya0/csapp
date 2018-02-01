@@ -1,7 +1,8 @@
-/* Display structure of floating-point numbers */
+/* Display structure of floating-point32_t numbers */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 float strtof(const char *nptr, char **endptr);
 
 #define FLOAT_SIZE 32
@@ -11,7 +12,7 @@ float strtof(const char *nptr, char **endptr);
 #define FRAC_MASK ((1<<FRAC_SIZE)-1)
 #define EXP_MASK ((1<<EXP_SIZE)-1)
 
-/* Floating point helpers */
+/* Floating point32_t helpers */
 unsigned f2u(float f)
 {
   union {
@@ -58,7 +59,7 @@ void show_float(unsigned uf)
   unsigned frac = get_frac(uf);
   unsigned sign = get_sign(uf);
 
-  printf("\nFloating point value %.10g\n", f);
+  printf("\nFloating point32_t value %.10g\n", f);
   printf("Bit Representation 0x%.8x, sign = %x, exponent = 0x%.2x, fraction = 0x%.6x\n",
 	 uf, sign, exp, frac);
   if (exp == EXP_MASK) {
@@ -67,9 +68,9 @@ void show_float(unsigned uf)
     } else
       printf("Not-A-Number\n");
   } else {
-    int denorm = (exp == 0);
-    int uexp = denorm ? 1-BIAS : exp - BIAS;
-    int mantissa = denorm ? frac : frac + (1<<FRAC_SIZE);
+    int32_t denorm = (exp == 0);
+    int32_t uexp = denorm ? 1-BIAS : exp - BIAS;
+    int32_t mantissa = denorm ? frac : frac + (1<<FRAC_SIZE);
     float fman = (float) mantissa / (float) (1<<FRAC_SIZE);
     printf("%s.  %c%.10f X 2^(%d)\n",
 	   denorm ? "Denormalized" : "Normalized",
@@ -79,12 +80,12 @@ void show_float(unsigned uf)
 }
 
 /* Extract hex/decimal/or float value from string */
-static int get_num_val(char *sval, unsigned *valp) {
+static int32_t get_num_val(char *sval, unsigned *valp) {
   char *endp;
-  /* See if it's an integer or floating point */
-  int ishex = 0;
-  int isfloat = 0;
-  int i;
+  /* See if it's an int32_teger or floating point32_t */
+  int32_t ishex = 0;
+  int32_t isfloat = 0;
+  int32_t i;
   for (i = 0; sval[i]; i++) {
     switch (sval[i]) {
     case 'x':
@@ -125,14 +126,14 @@ static int get_num_val(char *sval, unsigned *valp) {
 
 void usage(char *fname) {
   printf("Usage: %s val1 val2 ...\n", fname);
-  printf("Values may be given as hex patterns or as floating point numbers\n");
+  printf("Values may be given as hex patterns or as floating point32_t numbers\n");
   exit(0);
 }
 
 
-int main(int argc, char *argv[])
+int32_t main(int32_t argc, char *argv[])
 {
-  int i;
+  int32_t i;
   unsigned uf;
   if (argc < 2)
     usage(argv[0]);

@@ -1,8 +1,8 @@
-/* 
- * CS:APP Data Lab 
- * 
+/*
+ * CS:APP Data Lab
+ *
  * <Please put your name and userid here>
- * 
+ *
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
  *
@@ -10,9 +10,10 @@
  * compiler. You can still use printf for debugging without including
  * <stdio.h>, although you might get a compiler warning. In general,
  * it's not good practice to ignore compiler warnings, but in this
- * case it's OK.  
+ * case it's OK.
  */
 
+#include <stdint.h>
 #if 0
 /*
  * Instructions to Students:
@@ -23,17 +24,17 @@
 You will provide your solution to the Data Lab by
 editing the collection of functions in this source file.
 
-INTEGER CODING RULES:
- 
+int32_tEGER CODING RULES:
+
   Replace the "return" statement in each function with one
-  or more lines of C code that implements the function. Your code 
+  or more lines of C code that implements the function. Your code
   must conform to the following style:
- 
-  int Funct(arg1, arg2, ...) {
+
+  int32_t Funct(arg1, arg2, ...) {
       /* brief description of how your implementation works */
-      int var1 = Expr1;
+      int32_t var1 = Expr1;
       ...
-      int varM = ExprM;
+      int32_t varM = ExprM;
 
       varJ = ExprJ;
       ...
@@ -42,12 +43,12 @@ INTEGER CODING RULES:
   }
 
   Each "Expr" is an expression using ONLY the following:
-  1. Integer constants 0 through 255 (0xFF), inclusive. You are
+  1. int32_teger constants 0 through 255 (0xFF), inclusive. You are
       not allowed to use big constants such as 0xffffffff.
   2. Function arguments and local variables (no global variables).
-  3. Unary integer operations ! ~
-  4. Binary integer operations & ^ | + << >>
-    
+  3. Unary int32_teger operations ! ~
+  4. Binary int32_teger operations & ^ | + << >>
+
   Some of the problems restrict the set of allowed operators even further.
   Each "Expr" may consist of multiple operators. You are not restricted to
   one operator per line.
@@ -59,21 +60,21 @@ INTEGER CODING RULES:
   4. Call any functions.
   5. Use any other operations, such as &&, ||, -, or ?:
   6. Use any form of casting.
-  7. Use any data type other than int.  This implies that you
+  7. Use any data type other than int32_t.  This implies that you
      cannot use arrays, structs, or unions.
 
- 
+
   You may assume that your machine:
-  1. Uses 2s complement, 32-bit representations of integers.
+  1. Uses 2s complement, 32-bit representations of int32_tegers.
   2. Performs right shifts arithmetically.
-  3. Has unpredictable behavior when shifting an integer by more
+  3. Has unpredictable behavior when shifting an int32_teger by more
      than the word size.
 
 EXAMPLES OF ACCEPTABLE CODING STYLE:
   /*
    * pow2plus1 - returns 2^x + 1, where 0 <= x <= 31
    */
-  int pow2plus1(int x) {
+  int32_t pow2plus1(int32_t x) {
      /* exploit ability of shifts to compute powers of 2 */
      return (1 << x) + 1;
   }
@@ -81,67 +82,67 @@ EXAMPLES OF ACCEPTABLE CODING STYLE:
   /*
    * pow2plus4 - returns 2^x + 4, where 0 <= x <= 31
    */
-  int pow2plus4(int x) {
+  int32_t pow2plus4(int32_t x) {
      /* exploit ability of shifts to compute powers of 2 */
-     int result = (1 << x);
+     int32_t result = (1 << x);
      result += 4;
      return result;
   }
 
-FLOATING POINT CODING RULES
+FLOATING POint32_t CODING RULES
 
-For the problems that require you to implent floating-point operations,
+For the problems that require you to implent floating-point32_t operations,
 the coding rules are less strict.  You are allowed to use looping and
-conditional control.  You are allowed to use both ints and unsigneds.
-You can use arbitrary integer and unsigned constants.
+conditional control.  You are allowed to use both int32_ts and unsigneds.
+You can use arbitrary int32_teger and unsigned constants.
 
 You are expressly forbidden to:
   1. Define or use any macros.
   2. Define any additional functions in this file.
   3. Call any functions.
   4. Use any form of casting.
-  5. Use any data type other than int or unsigned.  This means that you
+  5. Use any data type other than int32_t or unsigned.  This means that you
      cannot use arrays, structs, or unions.
-  6. Use any floating point data types, operations, or constants.
+  6. Use any floating point32_t data types, operations, or constants.
 
 
 NOTES:
-  1. Use the dlc (data lab checker) compiler (described in the handout) to 
+  1. Use the dlc (data lab checker) compiler (described in the handout) to
      check the legality of your solutions.
   2. Each function has a maximum number of operators (! ~ & ^ | + << >>)
-     that you are allowed to use for your implementation of the function. 
-     The max operator count is checked by dlc. Note that '=' is not 
+     that you are allowed to use for your implementation of the function.
+     The max operator count is checked by dlc. Note that '=' is not
      counted; you may use as many of these as you want without penalty.
   3. Use the btest test harness to check your functions for correctness.
   4. Use the BDD checker to formally verify your functions
   5. The maximum number of ops for each function is given in the
-     header comment for each function. If there are any inconsistencies 
+     header comment for each function. If there are any inconsistencies
      between the maximum ops in the writeup and in this file, consider
      this file the authoritative source.
 
 /*
  * STEP 2: Modify the following functions according the coding rules.
- * 
+ *
  *   IMPORTANT. TO AVOID GRADING SURPRISES:
  *   1. Use the dlc compiler to check that your solutions conform
  *      to the coding rules.
- *   2. Use the BDD checker to formally verify that your solutions produce 
+ *   2. Use the BDD checker to formally verify that your solutions produce
  *      the correct answers.
  */
 
 
 #endif
-/* 
- * bitAnd - x&y using only ~ and | 
+/*
+ * bitAnd - x&y using only ~ and |
  *   Example: bitAnd(6, 5) = 4
  *   Legal ops: ~ |
  *   Max ops: 8
  *   Rating: 1
  */
-int bitAnd(int x, int y) {
+int32_t bitAnd(int32_t x, int32_t y) {
   return 2;
 }
-/* 
+/*
  * getByte - Extract byte n from word x
  *   Bytes numbered from 0 (LSB) to 3 (MSB)
  *   Examples: getByte(0x12345678,1) = 0x56
@@ -149,7 +150,7 @@ int bitAnd(int x, int y) {
  *   Max ops: 6
  *   Rating: 2
  */
-int getByte(int x, int n) {
+int32_t getByte(int32_t x, int32_t n) {
 
 
 
@@ -160,15 +161,15 @@ int getByte(int x, int n) {
   return 2;
 
 }
-/* 
+/*
  * logicalShift - shift x to the right by n, using a logical shift
  *   Can assume that 0 <= n <= 31
  *   Examples: logicalShift(0x87654321,4) = 0x08765432
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 20
- *   Rating: 3 
+ *   Rating: 3
  */
-int logicalShift(int x, int n) {
+int32_t logicalShift(int32_t x, int32_t n) {
   return 2;
 }
 /*
@@ -178,41 +179,41 @@ int logicalShift(int x, int n) {
  *   Max ops: 40
  *   Rating: 4
  */
-int bitCount(int x) {
+int32_t bitCount(int32_t x) {
   return 2;
 }
-/* 
+/*
  * bang - Compute !x without using !
  *   Examples: bang(3) = 0, bang(0) = 1
  *   Legal ops: ~ & ^ | + << >>
  *   Max ops: 12
- *   Rating: 4 
+ *   Rating: 4
  */
-int bang(int x) {
+int32_t bang(int32_t x) {
   return 2;
 }
-/* 
- * tmin - return minimum two's complement integer 
+/*
+ * tmin - return minimum two's complement int32_teger
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 4
  *   Rating: 1
  */
-int tmin(void) {
+int32_t tmin(void) {
   return 2;
 }
-/* 
- * fitsBits - return 1 if x can be represented as an 
- *  n-bit, two's complement integer.
+/*
+ * fitsBits - return 1 if x can be represented as an
+ *  n-bit, two's complement int32_teger.
  *   1 <= n <= 32
  *   Examples: fitsBits(5,3) = 0, fitsBits(-4,3) = 1
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 15
  *   Rating: 2
  */
-int fitsBits(int x, int n) {
+int32_t fitsBits(int32_t x, int32_t n) {
   return 2;
 }
-/* 
+/*
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
  *  Round toward zero
  *   Examples: divpwr2(15,1) = 7, divpwr2(-33,4) = -2
@@ -220,37 +221,37 @@ int fitsBits(int x, int n) {
  *   Max ops: 15
  *   Rating: 2
  */
-int divpwr2(int x, int n) {
+int32_t divpwr2(int32_t x, int32_t n) {
     return 2;
 }
-/* 
- * negate - return -x 
+/*
+ * negate - return -x
  *   Example: negate(1) = -1.
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 5
  *   Rating: 2
  */
-int negate(int x) {
+int32_t negate(int32_t x) {
   return 2;
 }
-/* 
- * isPositive - return 1 if x > 0, return 0 otherwise 
+/*
+ * isPositive - return 1 if x > 0, return 0 otherwise
  *   Example: isPositive(-1) = 0.
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 8
  *   Rating: 3
  */
-int isPositive(int x) {
+int32_t isPositive(int32_t x) {
   return 2;
 }
-/* 
- * isLessOrEqual - if x <= y  then return 1, else return 0 
+/*
+ * isLessOrEqual - if x <= y  then return 1, else return 0
  *   Example: isLessOrEqual(4,5) = 1.
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 24
  *   Rating: 3
  */
-int isLessOrEqual(int x, int y) {
+int32_t isLessOrEqual(int32_t x, int32_t y) {
   return 2;
 }
 /*
@@ -260,43 +261,43 @@ int isLessOrEqual(int x, int y) {
  *   Max ops: 90
  *   Rating: 4
  */
-int ilog2(int x) {
+int32_t ilog2(int32_t x) {
   return 2;
 }
-/* 
+/*
  * float_neg - Return bit-level equivalent of expression -f for
- *   floating point argument f.
- *   Both the argument and result are passed as unsigned int's, but
- *   they are to be interpreted as the bit-level representations of
- *   single-precision floating point values.
+ *   floating point32_t argument f.
+ *   Both the argument and result are passed as unsigned int32_t's, but
+ *   they are to be int32_terpreted as the bit-level representations of
+ *   single-precision floating point32_t values.
  *   When argument is NaN, return argument.
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Legal ops: Any int32_teger/unsigned operations incl. ||, &&. also if, while
  *   Max ops: 10
  *   Rating: 2
  */
 unsigned float_neg(unsigned uf) {
  return 2;
 }
-/* 
+/*
  * float_i2f - Return bit-level equivalent of expression (float) x
- *   Result is returned as unsigned int, but
- *   it is to be interpreted as the bit-level representation of a
- *   single-precision floating point values.
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Result is returned as unsigned int32_t, but
+ *   it is to be int32_terpreted as the bit-level representation of a
+ *   single-precision floating point32_t values.
+ *   Legal ops: Any int32_teger/unsigned operations incl. ||, &&. also if, while
  *   Max ops: 30
  *   Rating: 4
  */
-unsigned float_i2f(int x) {
+unsigned float_i2f(int32_t x) {
   return 2;
 }
-/* 
+/*
  * float_twice - Return bit-level equivalent of expression 2*f for
- *   floating point argument f.
- *   Both the argument and result are passed as unsigned int's, but
- *   they are to be interpreted as the bit-level representation of
- *   single-precision floating point values.
+ *   floating point32_t argument f.
+ *   Both the argument and result are passed as unsigned int32_t's, but
+ *   they are to be int32_terpreted as the bit-level representation of
+ *   single-precision floating point32_t values.
  *   When argument is NaN, return argument
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Legal ops: Any int32_teger/unsigned operations incl. ||, &&. also if, while
  *   Max ops: 30
  *   Rating: 4
  */

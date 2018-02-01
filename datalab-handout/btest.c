@@ -1,6 +1,6 @@
-/* 
- * CS:APP Data Lab 
- * 
+/*
+ * CS:APP Data Lab
+ *
  * btest.c - A test harness that checks a student's solution in bits.c
  *           for correctness.
  *
@@ -8,9 +8,9 @@
  * reserved.  May not be used, modified, or copied without permission.
  *
  * This is an improved version of btest that tests large windows
- * around zero and tmin and tmax for integer puzzles, and zero, norm,
- * and denorm boundaries for floating point puzzles.
- * 
+ * around zero and tmin and tmax for int32_teger puzzles, and zero, norm,
+ * and denorm boundaries for floating point32_t puzzles.
+ *
  * Note: not 64-bit safe. Always compile with gcc -m32 option.
  */
 #include <stdio.h>
@@ -47,32 +47,32 @@ float strtof(const char *nptr, char **endptr);
 #define MAX_TEST_VALS 13*TEST_RANGE
 
 /**********************************
- * Globals defined in other modules 
+ * Globals defined in other modules
  **********************************/
 /* This characterizes the set of puzzles to test.
    Defined in decl.c and generated from templates in ./puzzles dir */
-extern test_rec test_set[]; 
+extern test_rec test_set[];
 
 /************************************************
  * Write-once globals defined by command line args
  ************************************************/
 
-/* Emit results in a format for autograding, without showing 
+/* Emit results in a format for autograding, without showing
    and counter-examples */
-static int grade = 0;
+static int32_t grade = 0;
 
 /* Time out after this number of seconds */
-static int timeout_limit = TIMEOUT_LIMIT; /* -T */
+static int32_t timeout_limit = TIMEOUT_LIMIT; /* -T */
 
 /* If non-NULL, test only one function (-f) */
-static char* test_fname = NULL;  
+static char* test_fname = NULL;
 
 /* Special case when only use fixed argument(s) (-1, -2, or -3) */
-static int has_arg[3] = {0,0,0};
+static int32_t has_arg[3] = {0,0,0};
 static unsigned argval[3] = {0,0,0};
 
 /* Use fixed weight for rating, and if so, what should it  be? (-r) */
-static int global_rating = 0;
+static int32_t global_rating = 0;
 
 /******************
  * Helper functions
@@ -81,13 +81,13 @@ static int global_rating = 0;
 /*
  * Signal - installs a signal handler
  */
-typedef void handler_t(int);
+typedef void handler_t(int32_t);
 
-handler_t *Signal(int signum, handler_t *handler) 
+handler_t *Signal(int32_t signum, handler_t *handler)
 {
     struct sigaction action, old_action;
 
-    action.sa_handler = handler;  
+    action.sa_handler = handler;
     sigemptyset(&action.sa_mask); /* block sigs of type being handled */
     action.sa_flags = SA_RESTART; /* restart syscalls if possible */
 
@@ -96,31 +96,31 @@ handler_t *Signal(int signum, handler_t *handler)
     return (old_action.sa_handler);
 }
 
-/* 
- * timeout_handler - SIGALARM hander 
+/*
+ * timeout_handler - SIGALARM hander
  */
 sigjmp_buf envbuf;
-void timeout_handler(int sig) {
+void timeout_handler(int32_t sig) {
     siglongjmp(envbuf, 1);
 }
 
-/* 
- * random_val - Return random integer value between min and max 
+/*
+ * random_val - Return random int32_teger value between min and max
  */
-static int random_val(int min, int max)
+static int32_t random_val(int32_t min, int32_t max)
 {
     double weight = rand()/(double) RAND_MAX;
-    int result = min * (1-weight) + max * weight;
+    int32_t result = min * (1-weight) + max * weight;
     return result;
 }
 
-/* 
- * gen_vals - Generate the integer values we'll use to test a function 
+/*
+ * gen_vals - Generate the int32_teger values we'll use to test a function
  */
-static int gen_vals(int test_vals[], int min, int max, int test_range, int arg)
+static int32_t gen_vals(int32_t test_vals[], int32_t min, int32_t max, int32_t test_range, int32_t arg)
 {
-    int i;
-    int test_count = 0;
+    int32_t i;
+    int32_t test_count = 0;
 
     /* Special case: If the user has specified a specific function
        argument using the -1, -2, or -3 flags, then simply use this
@@ -130,19 +130,19 @@ static int gen_vals(int test_vals[], int min, int max, int test_range, int arg)
 	return 1;
     }
 
-    /* 
-     * Special case: Generate test vals for floating point functions
+    /*
+     * Special case: Generate test vals for floating point32_t functions
      * where the input argument is an unsigned bit-level
      * representation of a float. For this case we want to test the
      * regions around zero, the smallest normalized and largest
      * denormalized numbers, one, and the largest normalized number,
      * as well as inf and nan.
      */
-    if ((min == 1 && max == 1)) { 
+    if ((min == 1 && max == 1)) {
 	unsigned smallest_norm = 0x00800000;
 	unsigned one = 0x3f800000;
 	unsigned largest_norm = 0x7f000000;
-	
+
 	unsigned inf = 0x7f800000;
 	unsigned nan =  0x7fc00000;
 	unsigned sign = 0x80000000;
@@ -152,7 +152,7 @@ static int gen_vals(int test_vals[], int min, int max, int test_range, int arg)
 	if (test_range > (1 << 23)) {
 	    test_range = 1 << 23;
 	}
-	
+
 	/* Functions where the input argument is an unsigned bit-level
 	   representation of a float. The number of tests generated
 	   inside this loop body is the value k referenced in the
@@ -160,26 +160,26 @@ static int gen_vals(int test_vals[], int min, int max, int test_range, int arg)
 
 	for (i = 0; i < test_range; i++) {
 	    /* Denorms around zero */
-	    test_vals[test_count++] = i; 
+	    test_vals[test_count++] = i;
 	    test_vals[test_count++] = sign | i;
-	    
+
 	    /* Region around norm to denorm transition */
 	    test_vals[test_count++] = smallest_norm + i;
 	    test_vals[test_count++] = smallest_norm - i;
 	    test_vals[test_count++] = sign | (smallest_norm + i);
 	    test_vals[test_count++] = sign | (smallest_norm - i);
-	    
+
 	    /* Region around one */
 	    test_vals[test_count++] = one + i;
 	    test_vals[test_count++] = one - i;
 	    test_vals[test_count++] = sign | (one + i);
 	    test_vals[test_count++] = sign | (one - i);
-	    
+
 	    /* Region below largest norm */
-	    test_vals[test_count++] = largest_norm - i; 
-	    test_vals[test_count++] = sign | (largest_norm - i); 
+	    test_vals[test_count++] = largest_norm - i;
+	    test_vals[test_count++] = sign | (largest_norm - i);
 	}
-	
+
 	/* special vals */
 	test_vals[test_count++] = inf;        /* inf */
 	test_vals[test_count++] = sign | inf; /* -inf */
@@ -191,7 +191,7 @@ static int gen_vals(int test_vals[], int min, int max, int test_range, int arg)
 
 
     /*
-     * Normal case: Generate test vals for integer functions
+     * Normal case: Generate test vals for int32_teger functions
      */
 
     /* If the range is small enough, then do exhaustively */
@@ -222,14 +222,14 @@ static int gen_vals(int test_vals[], int min, int max, int test_range, int arg)
     return test_count;
 }
 
-/* 
- * test_0_arg - Test a function with zero arguments 
+/*
+ * test_0_arg - Test a function with zero arguments
  */
-static int test_0_arg(funct_t f, funct_t ft, char *name)
+static int32_t test_0_arg(funct_t f, funct_t ft, char *name)
 {
-    int r = f();
-    int rt = ft();
-    int error =  (r != rt);
+    int32_t r = f();
+    int32_t rt = ft();
+    int32_t error =  (r != rt);
 
     if (error && !grade)
 	printf("ERROR: Test %s() failed...\n...Gives %d[0x%x]. Should be %d[0x%x]\n", name, r, r, rt, rt);
@@ -237,14 +237,14 @@ static int test_0_arg(funct_t f, funct_t ft, char *name)
     return error;
 }
 
-/* 
- * test_1_arg - Test a function with one argument 
+/*
+ * test_1_arg - Test a function with one argument
  */
-static int test_1_arg(funct_t f, funct_t ft, int arg1, char *name)
+static int32_t test_1_arg(funct_t f, funct_t ft, int32_t arg1, char *name)
 {
     funct1_t f1 = (funct1_t) f;
     funct1_t f1t = (funct1_t) ft;
-    int r, rt, error;
+    int32_t r, rt, error;
 
     r = f1(arg1);
     rt = f1t(arg1);
@@ -255,16 +255,16 @@ static int test_1_arg(funct_t f, funct_t ft, int arg1, char *name)
     return error;
 }
 
-/* 
- * test_2_arg - Test a function with two arguments 
+/*
+ * test_2_arg - Test a function with two arguments
  */
-static int test_2_arg(funct_t f, funct_t ft, int arg1, int arg2, char *name)
+static int32_t test_2_arg(funct_t f, funct_t ft, int32_t arg1, int32_t arg2, char *name)
 {
     funct2_t f2 = (funct2_t) f;
     funct2_t f2t = (funct2_t) ft;
-    int r = f2(arg1, arg2);
-    int rt = f2t(arg1, arg2);
-    int error = (r != rt);
+    int32_t r = f2(arg1, arg2);
+    int32_t rt = f2t(arg1, arg2);
+    int32_t error = (r != rt);
 
     if (error && !grade)
 	printf("ERROR: Test %s(%d[0x%x],%d[0x%x]) failed...\n...Gives %d[0x%x]. Should be %d[0x%x]\n", name, arg1, arg1, arg2, arg2, r, r, rt, rt);
@@ -272,17 +272,17 @@ static int test_2_arg(funct_t f, funct_t ft, int arg1, int arg2, char *name)
     return error;
 }
 
-/* 
- * test_3_arg - Test a function with three arguments 
+/*
+ * test_3_arg - Test a function with three arguments
  */
-static int test_3_arg(funct_t f, funct_t ft, 
-		      int arg1, int arg2, int arg3, char *name)
+static int32_t test_3_arg(funct_t f, funct_t ft,
+		      int32_t arg1, int32_t arg2, int32_t arg3, char *name)
 {
     funct3_t f3 = (funct3_t) f;
     funct3_t f3t = (funct3_t) ft;
-    int r = f3(arg1, arg2, arg3);
-    int rt = f3t(arg1, arg2, arg3);
-    int error = (r != rt);
+    int32_t r = f3(arg1, arg2, arg3);
+    int32_t rt = f3t(arg1, arg2, arg3);
+    int32_t error = (r != rt);
 
     if (error && !grade)
 	printf("ERROR: Test %s(%d[0x%x],%d[0x%x],%d[0x%x]) failed...\n...Gives %d[0x%x]. Should be %d[0x%x]\n", name, arg1, arg1, arg2, arg2, arg3, arg3, r, r, rt, rt);
@@ -290,20 +290,20 @@ static int test_3_arg(funct_t f, funct_t ft,
     return error;
 }
 
-/* 
- * test_function - Test a function.  Return number of errors 
+/*
+ * test_function - Test a function.  Return number of errors
  */
-static int test_function(test_ptr t) {
-    int test_counts[3];    /* number of test values for each arg */
-    int args = t->args;    /* number of function arguments */
-    int arg_test_range[3]; /* test range for each argument */
-    int i, a1, a2, a3;        
-    int errors = 0;
+static int32_t test_function(test_ptr t) {
+    int32_t test_counts[3];    /* number of test values for each arg */
+    int32_t args = t->args;    /* number of function arguments */
+    int32_t arg_test_range[3]; /* test range for each argument */
+    int32_t i, a1, a2, a3;
+    int32_t errors = 0;
 
     /* These are the test values for each arg. Declared with the
        static attribute so that the array will be allocated in bss
        rather than the stack */
-    static int arg_test_vals[3][MAX_TEST_VALS]; 
+    static int32_t arg_test_vals[3][MAX_TEST_VALS];
 
     /* Sanity check on the number of args */
     if (args < 0 || args > 3) {
@@ -329,24 +329,24 @@ static int test_function(test_ptr t) {
     /* Sanity check on the ranges */
     if (arg_test_range[0] < 1)
 	arg_test_range[0] = 1;
-    if (arg_test_range[1] < 1) 
+    if (arg_test_range[1] < 1)
 	arg_test_range[1] = 1;
-    if (arg_test_range[2] < 1) 
+    if (arg_test_range[2] < 1)
 	arg_test_range[2] = 1;
 
     /* Create a test set for each argument */
     for (i = 0; i < args; i++) {
-	test_counts[i] =  gen_vals(arg_test_vals[i], 
+	test_counts[i] =  gen_vals(arg_test_vals[i],
 				   t->arg_ranges[i][0], /* min */
 				   t->arg_ranges[i][1], /* max */
-				   arg_test_range[i],   
+				   arg_test_range[i],
 				   i);
 
     }
 
     /* Handle timeouts in the test code */
     if (timeout_limit > 0) {
-	int rc;
+	int32_t rc;
 	rc = sigsetjmp(envbuf, 1);
 	if (rc) {
 	    /* control will reach here if there is a timeout */
@@ -362,17 +362,17 @@ static int test_function(test_ptr t) {
     if (args == 0) {
 	errors += test_0_arg(t->solution_funct, t->test_funct, t->name);
 	return errors;
-    } 
+    }
 
-    /* 
-     * Test function has at least one argument 
+    /*
+     * Test function has at least one argument
      */
-      
+
     /* Iterate over the values for first argument */
 
     for (a1 = 0; a1 < test_counts[0]; a1++) {
 	if (args == 1) {
-	    errors += test_1_arg(t->solution_funct, 
+	    errors += test_1_arg(t->solution_funct,
 				 t->test_funct,
 				 arg_test_vals[0][a1],
 				 t->name);
@@ -380,31 +380,31 @@ static int test_function(test_ptr t) {
 	    /* Stop testing if there is an error */
 	    if (errors)
 		return errors;
-	} 
+	}
 	else {
 	    /* if necessary, iterate over values for second argument */
 	    for (a2 = 0; a2 < test_counts[1]; a2++) {
 		if (args == 2) {
-		    errors += test_2_arg(t->solution_funct, 
+		    errors += test_2_arg(t->solution_funct,
 					 t->test_funct,
-					 arg_test_vals[0][a1], 
+					 arg_test_vals[0][a1],
 					 arg_test_vals[1][a2],
 					 t->name);
 
 		    /* Stop testing if there is an error */
 		    if (errors)
 			return errors;
-		} 
+		}
 		else {
 		    /* if necessary, iterate over vals for third arg */
 		    for (a3 = 0; a3 < test_counts[2]; a3++) {
-			errors += test_3_arg(t->solution_funct, 
+			errors += test_3_arg(t->solution_funct,
 					     t->test_funct,
-					     arg_test_vals[0][a1], 
+					     arg_test_vals[0][a1],
 					     arg_test_vals[1][a2],
 					     arg_test_vals[2][a3],
 					     t->name);
-			
+
 			/* Stop testing if there is an error */
 			if (errors)
 			    return errors;
@@ -414,56 +414,56 @@ static int test_function(test_ptr t) {
 	}
     } /* a1 */
 
-    
+
     return errors;
 }
 
-/* 
- * run_tests - Run series of tests.  Return number of errors 
- */ 
-static int run_tests() 
+/*
+ * run_tests - Run series of tests.  Return number of errors
+ */
+static int32_t run_tests()
 {
-    int i;
-    int errors = 0;
-    double points = 0.0;
-    double max_points = 0.0;
+    int32_t i;
+    int32_t errors = 0;
+    double point32_ts = 0.0;
+    double max_point32_ts = 0.0;
 
     printf("Score\tRating\tErrors\tFunction\n");
 
     for (i = 0; test_set[i].solution_funct; i++) {
-	int terrors;
+	int32_t terrors;
 	double tscore;
-	double tpoints;
+	double tpoint32_ts;
 	if (!test_fname || strcmp(test_set[i].name,test_fname) == 0) {
-	    int rating = global_rating ? global_rating : test_set[i].rating;
+	    int32_t rating = global_rating ? global_rating : test_set[i].rating;
 	    terrors = test_function(&test_set[i]);
 	    errors += terrors;
 	    tscore = terrors == 0 ? 1.0 : 0.0;
-	    tpoints = rating * tscore;
-	    points += tpoints;
-	    max_points += rating;
+	    tpoint32_ts = rating * tscore;
+	    point32_ts += tpoint32_ts;
+	    max_point32_ts += rating;
 
 	    if (grade || terrors < 1)
-		printf(" %.0f\t%d\t%d\t%s\n", 
-		       tpoints, rating, terrors, test_set[i].name);
+		printf(" %.0f\t%d\t%d\t%s\n",
+		       tpoint32_ts, rating, terrors, test_set[i].name);
 
 	}
     }
 
-    printf("Total points: %.0f/%.0f\n", points, max_points);
+    printf("Total point32_ts: %.0f/%.0f\n", point32_ts, max_point32_ts);
     return errors;
 }
 
-/* 
- * get_num_val - Extract hex/decimal/or float value from string 
+/*
+ * get_num_val - Extract hex/decimal/or float value from string
  */
-static int get_num_val(char *sval, unsigned *valp) {
+static int32_t get_num_val(char *sval, unsigned *valp) {
     char *endp;
 
-    /* See if it's an integer or floating point */
-    int ishex = 0;
-    int isfloat = 0;
-    int i;
+    /* See if it's an int32_teger or floating point32_t */
+    int32_t ishex = 0;
+    int32_t isfloat = 0;
+    int32_t i;
     for (i = 0; sval[i]; i++) {
 	switch (sval[i]) {
 	case 'x':
@@ -502,7 +502,7 @@ static int get_num_val(char *sval, unsigned *valp) {
 }
 
 
-/* 
+/*
  * usage - Display usage info
  */
 static void usage(char *cmd) {
@@ -512,20 +512,20 @@ static void usage(char *cmd) {
     printf("  -3 <val>  Specify third function argument\n");
     printf("  -f <name> Test only the named function\n");
     printf("  -g        Compact output for grading (with no error msgs)\n");
-    printf("  -h        Print this message\n");
+    printf("  -h        Print32_t this message\n");
     printf("  -r <n>    Give uniform weight of n for all problems\n");
     printf("  -T <lim>  Set timeout limit to lim\n");
     exit(1);
 }
 
 
-/************** 
- * Main routine 
+/**************
+ * Main routine
  **************/
 
-int main(int argc, char *argv[])
+int32_t main(int32_t argc, char *argv[])
 {
-    int errors;
+    int32_t errors;
     char c;
 
     /* parse command line args */

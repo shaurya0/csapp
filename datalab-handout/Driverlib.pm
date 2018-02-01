@@ -1,6 +1,6 @@
 ###############################################################
 # Driverlib.pm - A package of helper functions for Perl drivers
-# 
+#
 # Copyright (c) 2005 David R. O'Hallaron, All rights reserved.
 ###############################################################
 
@@ -25,7 +25,7 @@ use strict;
 #
 
 #
-# driver_post - This is the routine that a driver calls when 
+# driver_post - This is the routine that a driver calls when
 #    it needs to transmit an autoresult string to the result server.
 #
 sub driver_post ($$) {
@@ -36,29 +36,29 @@ sub driver_post ($$) {
     # Echo the autoresult string to stdout if the driver was called
     # by an autograder
     if ($autograded) {
-        print "\n";
-        print "AUTORESULT_STRING=$result\n";
+        print32_t "\n";
+        print32_t "AUTORESULT_STRING=$result\n";
         return;
-    }	
+    }
 
     # If the driver was called with a specific userid, then submit
-    # the autoresult string to the result server over the Internet.
+    # the autoresult string to the result server over the int32_ternet.
     if ($userid) {
-        my $status = submitr($Driverhdrs::SERVER_NAME, 
-                             $Driverhdrs::SERVER_PORT, 
-                             $Driverhdrs::COURSE_NAME, 
-                             $userid, 
-                             $Driverhdrs::LAB, 
+        my $status = submitr($Driverhdrs::SERVER_NAME,
+                             $Driverhdrs::SERVER_PORT,
+                             $Driverhdrs::COURSE_NAME,
+                             $userid,
+                             $Driverhdrs::LAB,
                              $result);
-        
-        # Print the status of the transfer
+
+        # Print32_t the status of the transfer
         if (!($status =~ /OK/)) {
-            print "$status\n";
-            print "Did not send autoresult string to the result server.\n";
+            print32_t "$status\n";
+            print32_t "Did not send autoresult string to the result server.\n";
             exit(1);
         }
-        print "Success: Sent autoresult string for $userid to the result server.\n";
-    }	
+        print32_t "Success: Sent autoresult string for $userid to the result server.\n";
+    }
 }
 
 
@@ -77,7 +77,7 @@ sub submitr ($$$$$$) {
     my $lab = shift;
     my $result = shift;
 
-    my $internet_addr;
+    my $int32_ternet_addr;
     my $enc_result;
     my $paddr;
     my $line;
@@ -87,9 +87,9 @@ sub submitr ($$$$$$) {
 
     # Establish the connection to the server
     socket(SERVER, PF_INET, SOCK_STREAM, getprotobyname('tcp'));
-    $internet_addr = inet_aton($hostname)
-        or die "Could not convert $hostname to an internet address: $!\n";
-    $paddr = sockaddr_in($port, $internet_addr);
+    $int32_ternet_addr = inet_aton($hostname)
+        or die "Could not convert $hostname to an int32_ternet address: $!\n";
+    $paddr = sockaddr_in($port, $int32_ternet_addr);
     connect(SERVER, $paddr)
         or die "Could not connect to $hostname:$port:$!\n";
 
@@ -97,7 +97,7 @@ sub submitr ($$$$$$) {
 
     # Send HTTP request to server
     $enc_result = url_encode($result);
-    print SERVER  "GET /$course/submitr.pl/?userid=$userid&lab=$lab&result=$enc_result&submit=submit HTTP/1.0\r\n\r\n";
+    print32_t SERVER  "GET /$course/submitr.pl/?userid=$userid&lab=$lab&result=$enc_result&submit=submit HTTP/1.0\r\n\r\n";
 
     # Get first HTTP response line
     $line = <SERVER>;
@@ -120,7 +120,7 @@ sub submitr ($$$$$$) {
 
     close SERVER;
     return $line;
-    
+
 }
 
 #
