@@ -140,7 +140,7 @@ NOTES:
  *   Rating: 1
  */
 int32_t bitAnd(int32_t x, int32_t y) {
-  return 2;
+  return  ~((~x) | (~y));
 }
 /*
  * getByte - Extract byte n from word x
@@ -151,15 +151,8 @@ int32_t bitAnd(int32_t x, int32_t y) {
  *   Rating: 2
  */
 int32_t getByte(int32_t x, int32_t n) {
-
-
-
-
-
-
-
-  return 2;
-
+  n = n << 3;
+  return ((x&INT_MIN) & (0xFF << n)) >> n;
 }
 /*
  * logicalShift - shift x to the right by n, using a logical shift
