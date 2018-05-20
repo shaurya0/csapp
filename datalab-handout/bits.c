@@ -14,6 +14,7 @@
  */
 
 #include <stdint.h>
+#include <limits.h>
 #if 0
 /*
  * Instructions to Students:
@@ -24,7 +25,7 @@
 You will provide your solution to the Data Lab by
 editing the collection of functions in this source file.
 
-int32_tEGER CODING RULES:
+intEGER CODING RULES:
 
   Replace the "return" statement in each function with one
   or more lines of C code that implements the function. Your code
@@ -43,11 +44,11 @@ int32_tEGER CODING RULES:
   }
 
   Each "Expr" is an expression using ONLY the following:
-  1. int32_teger constants 0 through 255 (0xFF), inclusive. You are
+  1. integer constants 0 through 255 (0xFF), inclusive. You are
       not allowed to use big constants such as 0xffffffff.
   2. Function arguments and local variables (no global variables).
-  3. Unary int32_teger operations ! ~
-  4. Binary int32_teger operations & ^ | + << >>
+  3. Unary integer operations ! ~
+  4. Binary integer operations & ^ | + << >>
 
   Some of the problems restrict the set of allowed operators even further.
   Each "Expr" may consist of multiple operators. You are not restricted to
@@ -65,9 +66,9 @@ int32_tEGER CODING RULES:
 
 
   You may assume that your machine:
-  1. Uses 2s complement, 32-bit representations of int32_tegers.
+  1. Uses 2s complement, 32-bit representations of integers.
   2. Performs right shifts arithmetically.
-  3. Has unpredictable behavior when shifting an int32_teger by more
+  3. Has unpredictable behavior when shifting an integer by more
      than the word size.
 
 EXAMPLES OF ACCEPTABLE CODING STYLE:
@@ -89,12 +90,12 @@ EXAMPLES OF ACCEPTABLE CODING STYLE:
      return result;
   }
 
-FLOATING POint32_t CODING RULES
+FLOATING POint CODING RULES
 
-For the problems that require you to implent floating-point32_t operations,
+For the problems that require you to implent floating-point operations,
 the coding rules are less strict.  You are allowed to use looping and
 conditional control.  You are allowed to use both int32_ts and unsigneds.
-You can use arbitrary int32_teger and unsigned constants.
+You can use arbitrary integer and unsigned constants.
 
 You are expressly forbidden to:
   1. Define or use any macros.
@@ -103,7 +104,7 @@ You are expressly forbidden to:
   4. Use any form of casting.
   5. Use any data type other than int32_t or unsigned.  This means that you
      cannot use arrays, structs, or unions.
-  6. Use any floating point32_t data types, operations, or constants.
+  6. Use any floating point data types, operations, or constants.
 
 
 NOTES:
@@ -150,9 +151,10 @@ int32_t bitAnd(int32_t x, int32_t y) {
  *   Max ops: 6
  *   Rating: 2
  */
-int32_t getByte(int32_t x, int32_t n) {
-  n = n << 3;
-  return ((x&INT_MIN) & (0xFF << n)) >> n;
+int32_t getByte(int32_t x, int32_t n)
+{
+  x >>= (n<<3);
+  return (x & 0xFF);
 }
 /*
  * logicalShift - shift x to the right by n, using a logical shift
@@ -186,17 +188,17 @@ int32_t bang(int32_t x) {
   return 2;
 }
 /*
- * tmin - return minimum two's complement int32_teger
+ * tmin - return minimum two's complement integer
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 4
  *   Rating: 1
  */
 int32_t tmin(void) {
-  return 2;
+  return (1<<31);
 }
 /*
  * fitsBits - return 1 if x can be represented as an
- *  n-bit, two's complement int32_teger.
+ *  n-bit, two's complement integer.
  *   1 <= n <= 32
  *   Examples: fitsBits(5,3) = 0, fitsBits(-4,3) = 1
  *   Legal ops: ! ~ & ^ | + << >>
@@ -215,7 +217,7 @@ int32_t fitsBits(int32_t x, int32_t n) {
  *   Rating: 2
  */
 int32_t divpwr2(int32_t x, int32_t n) {
-    return 2;
+  return x>>n;
 }
 /*
  * negate - return -x
@@ -224,8 +226,9 @@ int32_t divpwr2(int32_t x, int32_t n) {
  *   Max ops: 5
  *   Rating: 2
  */
-int32_t negate(int32_t x) {
-  return 2;
+int32_t negate(int32_t x)
+{
+  return ~x + 1;
 }
 /*
  * isPositive - return 1 if x > 0, return 0 otherwise
@@ -235,7 +238,7 @@ int32_t negate(int32_t x) {
  *   Rating: 3
  */
 int32_t isPositive(int32_t x) {
-  return 2;
+  return !(x & (0x80000000));
 }
 /*
  * isLessOrEqual - if x <= y  then return 1, else return 0
@@ -259,24 +262,26 @@ int32_t ilog2(int32_t x) {
 }
 /*
  * float_neg - Return bit-level equivalent of expression -f for
- *   floating point32_t argument f.
+ *   floating point argument f.
  *   Both the argument and result are passed as unsigned int32_t's, but
- *   they are to be int32_terpreted as the bit-level representations of
- *   single-precision floating point32_t values.
+ *   they are to be interpreted as the bit-level representations of
+ *   single-precision floating point values.
  *   When argument is NaN, return argument.
- *   Legal ops: Any int32_teger/unsigned operations incl. ||, &&. also if, while
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
  *   Max ops: 10
  *   Rating: 2
  */
 unsigned float_neg(unsigned uf) {
- return 2;
+
+ float f = *(float*)&uf;
+ return -f;
 }
 /*
  * float_i2f - Return bit-level equivalent of expression (float) x
  *   Result is returned as unsigned int32_t, but
- *   it is to be int32_terpreted as the bit-level representation of a
- *   single-precision floating point32_t values.
- *   Legal ops: Any int32_teger/unsigned operations incl. ||, &&. also if, while
+ *   it is to be interpreted as the bit-level representation of a
+ *   single-precision floating point values.
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
  *   Max ops: 30
  *   Rating: 4
  */
@@ -285,12 +290,12 @@ unsigned float_i2f(int32_t x) {
 }
 /*
  * float_twice - Return bit-level equivalent of expression 2*f for
- *   floating point32_t argument f.
+ *   floating point argument f.
  *   Both the argument and result are passed as unsigned int32_t's, but
- *   they are to be int32_terpreted as the bit-level representation of
- *   single-precision floating point32_t values.
+ *   they are to be interpreted as the bit-level representation of
+ *   single-precision floating point values.
  *   When argument is NaN, return argument
- *   Legal ops: Any int32_teger/unsigned operations incl. ||, &&. also if, while
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
  *   Max ops: 30
  *   Rating: 4
  */

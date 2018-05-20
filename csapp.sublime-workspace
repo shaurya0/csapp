@@ -1,0 +1,705 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"div",
+				"divpwr2"
+			],
+			[
+				"0x",
+				"0x12345678,1\t(bits.c)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "datalab-handout/bits.c",
+			"settings":
+			{
+				"buffer_size": 8640,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bomb/bomb.c",
+			"settings":
+			{
+				"buffer_size": 4069,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bomb/dis.asm",
+			"settings":
+			{
+				"buffer_size": 86299,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "socket\nfflush\nstrcpy\nexit\nfopen\nconnect\nsignal\nputs\nstdin\nstrtol\nfgets\nread\nstdout\ngetenv\nstderr\nalarm\ngethostbyname\nclose\nsleep\nwrite\nAVAUATUSH\nTt H\nP[]A\\A]A^\nATUSH\nt%:E\n[]A\\\n***truncH\nated***\nAWAVAUATUSH\n8[]A\\A]A^A_\nAWAVAUATUSH\nError: CI\nlient unI\nable to I\ncreate sI\nF ockefA\nError: DI\nNS is unI\nable to I\nresolve I\nserver aI\nF(ddrefA\nF,ssA\nError: UI\nnable toI\n connectI\n to the I\nF servfA\nError: RI\nesult stI\nring tooI\nIncreaseI\n SUBMITRI\n_MAXBUF\n*t#A\nError: CI\nlient unI\nable to I\nwrite toI\n the serI\nF(ver\nError: CI\nlient unI\nable to I\nread firI\nst headeI\nr from sI\nF0ervefA\nError: CI\nlient unI\nable to I\nread heaI\nders froI\nm serverI\nError: CI\nlient unI\nable to I\nread staI\ntus messI\nage fromI\n server\nError: RI\nesult stI\nring conI\ntains anI\n illegalI\n or unprI\nintable I\ncharacteI\nF8fA\n[]A\\A]A^A_\nError: CH\nlient unH\nable to H\ncreate sH\nE ockef\nError: DH\nNS is unH\nable to H\nresolve H\nserver aH\nE(ddref\nE,ss\n%s: Error: Couldn't open %s\nHalfway there!\nWow! You've defused the secret stage!\nflyers\nmaduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?\nCurses, you've found the secret phase!\nCongratulations! You've defused the bomb!\nInvalid phase%s\nBOOM!!!\n%d %d %d %d %d %d\nError: Premature EOF on stdin\nGRADE_BOMB\nError: Input line too long\n%d %d %s\nDrEvil\nProgram timed out after %d seconds\nError: HTTP request failed with error %d: %s\nError: Unable to connect to server %s\n%%%02X\n%s %d %[a-zA-z ]\nAUTORESULT_STRING=%s\ncsapp\nprintf\n_IO_read_ptr\n_chain\nsize_t\n_shortbuf\n_IO_buf_base\nlong long unsigned int\nread_line\nlong long int\nphase_defused\n_fileno\n_IO_read_end\n_flags\n_IO_buf_end\n_cur_column\n_old_offset\ninfile\ninitialize_bomb\n_IO_marker\nstdin\n_IO_write_ptr\n_sbuf\nshort unsigned int\n_IO_save_base\n_lock\n_flags2\n_mode\nstdout\nsizetype\n_IO_write_end\n_IO_lock_t\n_IO_FILE\nfopen\n_pos\n_markers\nunsigned char\nshort int\n_vtable_offset\nexit\ninput\n_next\n_IO_read_base\n_IO_save_end\n_unused2\nargv\nphase_1\nphase_2\nphase_3\nphase_4\nphase_5\nphase_6\n_IO_backup_base\nargc\nmain\n_IO_write_base\ncall_gmon_start\nderegister_tm_clones\nregister_tm_clones\nframe_dummy\nsig_handler\nrio_readlineb\n_DYNAMIC\n_GLOBAL_OFFSET_TABLE_\nskip\nphase_defused\n_ITM_deregisterTMCloneTable\ndata_start\ninput_strings\n_edata\n_fini\nnum_input_strings\nphase_5\ninitialize_bomb_solve\nblank_line\nsubmitr\nphase_3\nphase_1\ninvalid_phase\ninit_driver\nnode3\nexplode_bomb\nnode1\nnode5\nfun7\n_IO_stdin_used\nhost_table\nfunc4\nstring_length\n_end\n_start\nsecret_phase\ninfile\nsigalrm_handler\ninit_timeout\nmain\nread_line\nstrings_not_equal\nphase_4\nphase_6\nscratch\n_Jv_RegisterClasses\ndriver_post\nphase_2\nbomb_id\n_ITM_registerTMCloneTable\nnode2\nnode4\nnode6\n_init\nread_six_numbers\ninitialize_bomb\n",
+			"file": "bomb/str.txt",
+			"file_size": 5477,
+			"file_write_time": 131712043708892010,
+			"settings":
+			{
+				"buffer_size": 2653,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bomb/README",
+			"settings":
+			{
+				"buffer_size": 49,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "datalab-handout/main.cpp",
+			"settings":
+			{
+				"buffer_size": 296,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Python 2.7.12 (default, Dec  4 2017, 14:50:18) \n[GCC 5.4.0 20160609] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> -1677923583/2\n-838961792\n>>> -1677923583/2.0\n-838961791.5\n>>> \n\n***Repl Closed***\n",
+			"settings":
+			{
+				"buffer_size": 236,
+				"line_ending": "Windows",
+				"name": "*REPL* [python]",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "csapp.sublime-project",
+			"settings":
+			{
+				"buffer_size": 374,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				]
+			],
+			[
+				"Build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"hex",
+				"HexViewer: Toggle Hex View"
+			],
+			[
+				"run",
+				"Build With: C++ Single File - Run"
+			],
+			[
+				"pyth",
+				"SublimeREPL: Python"
+			],
+			[
+				"build",
+				"Build With: C++ Single File - Run"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"pytho",
+				"SublimeREPL: Python"
+			],
+			[
+				"python",
+				"SublimeREPL: Python"
+			],
+			[
+				"repl",
+				"SublimeREPL: Python"
+			],
+			[
+				"c imp",
+				"Set Syntax: C Improved"
+			],
+			[
+				"rename",
+				"Rename File"
+			],
+			[
+				"pre",
+				"Preferences: Settings"
+			],
+			[
+				"prefere",
+				"Preferences: Settings"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"c99",
+				"Set Syntax: C99"
+			],
+			[
+				"c impo",
+				"Set Syntax: C Improved"
+			],
+			[
+				"99",
+				"Set Syntax: C99"
+			],
+			[
+				"c11",
+				"Set Syntax: C11"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings"
+			],
+			[
+				"easy",
+				"EasyClangComplete: Settings"
+			],
+			[
+				"intden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"prefer",
+				"Preferences: Settings"
+			],
+			[
+				"package",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 321.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/shaurya/Development/csapp"
+	],
+	"file_history":
+	[
+		"/home/shaurya/Development/csapp/bomb/dis.asm",
+		"/home/shaurya/Development/csapp/bomb/bomb",
+		"/home/shaurya/Development/csapp/csapp.sublime-project",
+		"/home/shaurya/Development/kilo/kilo.c"
+	],
+	"find":
+	{
+		"height": 49.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"string_",
+			"strings_not_equal",
+			"402400",
+			"0x402400",
+			"phase_1",
+			"401338",
+			"phase_1",
+			"4014d5",
+			"AVAUATUSH",
+			"<",
+			"/",
+			"@",
+			"__",
+			"$",
+			".",
+			"strings_not_equal",
+			"phase_1",
+			"initialize",
+			"nan",
+			"point32_t",
+			"int32_teger",
+			"int32_terpreted",
+			"301989888"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "datalab-handout/bits.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8640,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8250,
+								8250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C Improved/C Improved.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7096.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bomb/bomb.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4069,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C Improved/C Improved.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "bomb/dis.asm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 86299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34411,
+								34411
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 15141.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "bomb/str.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2653,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								144,
+								144
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 81.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "bomb/README",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 49,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "datalab-handout/main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 296,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								94,
+								94
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 236,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								236,
+								236
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"auto_indent": false,
+							"default_dir": "/home/shaurya/Development/csapp/datalab-handout",
+							"detect_indentation": false,
+							"gutter": false,
+							"history_arrows": true,
+							"indent_subsequent_lines": false,
+							"line_numbers": false,
+							"repl": true,
+							"repl_external_id": "python",
+							"repl_id": "4b3398615a8c40698b6967ec7afa0689",
+							"repl_restart_args":
+							{
+								"cmd":
+								[
+									"python",
+									"-i",
+									"-u"
+								],
+								"cwd": "$file_path",
+								"encoding": "utf8",
+								"extend_env":
+								{
+									"PYTHONIOENCODING": "utf-8"
+								},
+								"external_id": "python",
+								"syntax": "Packages/Python/Python.tmLanguage",
+								"type": "subprocess"
+							},
+							"repl_sublime2": false,
+							"smart_indent": false,
+							"spell_check": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "csapp.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								366,
+								366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 330.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.hex_viewer_inspector":
+	{
+		"height": 181.0
+	},
+	"pinned_build_system": "",
+	"project": "csapp.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"bomb",
+				"bomb/bomb.c"
+			],
+			[
+				"",
+				"datalab-handout/bits.c"
+			],
+			[
+				"kilo",
+				"kilo.c"
+			],
+			[
+				"k",
+				"kilo.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

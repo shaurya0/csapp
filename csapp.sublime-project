@@ -1,0 +1,20 @@
+{
+    "folders":
+    [
+        {
+            "path": ".",
+            "file_include_patterns": ["*.c", "Makefile", "*.sublime-project"],
+        },
+    ],
+    "settings":
+    {
+        "tab_size": 4
+    },
+    "build_systems":
+    [
+        {
+            "name": "Build",
+            "shell_cmd": "make -C /home/shaurya/Development/csapp/datalab-handout"
+        },
+    ]
+}
